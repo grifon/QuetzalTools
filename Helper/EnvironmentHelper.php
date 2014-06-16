@@ -77,4 +77,27 @@ class EnvironmentHelper
 	{
 		self::$storage[$key] = $value;
 	}
+
+	/**
+	 * Возвращает параметр конфигурации (алиас getParam)
+	 *
+	 * @param $key
+	 *
+	 * @return mixed
+	 */
+	public static function get($key)
+	{
+		return self::getParam($key);
+	}
+
+	/**
+	 * Устанавливает параметр конфигурации (алиас setParam)
+	 *
+	 * @param string $key
+	 * @param $value
+	 */
+	public static function set($key, $value)
+	{
+		self::setParam($key, $value);
+	}
 }

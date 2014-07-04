@@ -12,3 +12,5 @@ spl_autoload_register(
 		}
 	}
 );
+
+use EnvironmentHelper as EH;

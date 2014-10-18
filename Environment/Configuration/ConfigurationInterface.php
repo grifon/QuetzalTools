@@ -7,7 +7,7 @@ namespace Quetzal\Environment\Configuration;
  *
  * Interface ConfigurationInterface
  *
- * @package Quetzal\Environment\Configuration
+ * @package Quetzal\Environment
  */
 interface ConfigurationInterface
 {

@@ -11,6 +11,8 @@ use Quetzal\Environment\Configuration\ConfigurationInterface;
  * Class EnvironmentManager
  *
  * @author Grigory Bychek <gbychek@gmail.com>
+ *
+ * @package Quetzal\Environment
  */
 class EnvironmentManager implements SingletonInterface
 {

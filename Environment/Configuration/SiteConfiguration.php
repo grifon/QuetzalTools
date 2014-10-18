@@ -8,15 +8,22 @@ namespace Quetzal\Environment\Configuration;
  * Class SiteConfiguration
  *
  * @author Grigory Bychek <gbychek@gmail.com>
+ *
+ * @package Quetzal\Environment
  */
 class SiteConfiguration extends CommonConfiguration
 {
 	/**
 	 * id сайта, для которого эта конфигурация
+	 *
 	 * @var string
 	 */
 	protected $site;
 
+	/**
+	 * @param string $siteId
+	 * @param array $config
+	 */
 	public function __construct($siteId, array $config = array())
 	{
 		parent::__construct($config);

@@ -8,6 +8,8 @@ namespace Quetzal\Environment\Configuration;
  * Class CommonConfiguration
  *
  * @author Grigory Bychek <gbychek@gmail.com>
+ *
+ * @package Quetzal\Environment
  */
 class CommonConfiguration implements ConfigurationInterface
 {

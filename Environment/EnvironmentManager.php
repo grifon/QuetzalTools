@@ -48,6 +48,35 @@ class EnvironmentManager implements SingletonInterface
 	{}
 
 	/**
+	 * Получает список имен файлов (без расширений) с конфигурациями
+	 * в порядке их подключения
+	 *
+	 * @return array
+	 */
+	public function getConfigFileNames()
+	{
+		$currentSiteId = $this->getCurrentSiteId();
+
+		return array(
+			'common',
+			$currentSiteId,
+			sprintf('%s_override', $currentSiteId)
+		);
+	}
+
+	/**
+	 * Получает id текущего сайта
+	 *
+	 * @return string
+	 *
+	 * @todo Что, если это запуск cron-скрипта?
+	 */
+	protected function getCurrentSiteId()
+	{
+		return defined('SITE_ID') ? SITE_ID : self::DEFAULT_SITE_ID;
+	}
+
+	/**
 	 * Добавляет конфигурацию в пул
 	 *
 	 * @param ConfigurationInterface $configuration

@@ -14,6 +14,11 @@ use Quetzal\Common\SingletonInterface;
 class EnvironmentManager implements SingletonInterface
 {
 	/**
+	 * id сайта по умолчанию
+	 */
+	const DEFAULT_SITE_ID = 's1';
+
+	/**
 	 * @var EnvironmentManager
 	 */
 	protected static $instance = null;

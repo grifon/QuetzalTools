@@ -9,7 +9,7 @@ namespace Quetzal\Environment\Configuration;
  *
  * @author Grigory Bychek <gbychek@gmail.com>
  */
-class CommonConfiguration
+class CommonConfiguration implements ConfigurationInterface
 {
 	/**
 	 * Хранимые параметры конфигурации

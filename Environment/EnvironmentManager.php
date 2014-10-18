@@ -3,6 +3,7 @@
 namespace Quetzal\Environment;
 
 use Quetzal\Common\SingletonInterface;
+use Quetzal\Environment\Configuration\ConfigurationInterface;
 
 /**
  * Менеджер переменных окружения
@@ -24,6 +25,11 @@ class EnvironmentManager implements SingletonInterface
 	protected static $instance = null;
 
 	/**
+	 * @var array
+	 */
+	protected $configurations = array();
+
+	/**
 	 * @return EnvironmentManager
 	 */
 	public static function getInstance()
@@ -40,4 +46,42 @@ class EnvironmentManager implements SingletonInterface
 
 	private function __clone()
 	{}
+
+	/**
+	 * Добавляет конфигурацию в пул
+	 *
+	 * @param ConfigurationInterface $configuration
+	 */
+	public function addConfig(ConfigurationInterface $configuration)
+	{
+		array_unshift($this->configurations, $configuration);
+	}
+
+	/**
+	 * Получает конфигурацию, добавленную позже всех
+	 *
+	 * @return ConfigurationInterface|null
+	 */
+	public function getTopConfig()
+	{
+		return empty($this->configurations) ? null : $this->configurations[0];
+	}
+
+	/**
+	 * Получает значение переменной окружения
+	 *
+	 * @param string $key
+	 *
+	 * @return mixed
+	 */
+	public function get($key)
+	{
+		foreach ($this->configurations as $config) {
+			if (isset($config[$key])) {
+				return $config[$key];
+			}
+		}
+
+		return null;
+	}
 }

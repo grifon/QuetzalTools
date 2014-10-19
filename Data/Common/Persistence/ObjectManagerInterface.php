@@ -2,6 +2,8 @@
 
 namespace Quetzal\Data\Common\Persistence;
 
+use Quetzal\Common\Exception\Data\Common\DeleteException;
+use Quetzal\Common\Exception\Data\Common\SaveException;
 use Quetzal\Data\Common\Model;
 
 /**
@@ -54,6 +56,8 @@ interface ObjectManagerInterface
 	 * Сохранаяет элемент
 	 *
 	 * @param Model $item
+	 *
+	 * @throws SaveException
 	 */
 	public function save(Model $item);
 
@@ -61,6 +65,8 @@ interface ObjectManagerInterface
 	 * Удаляет элемент
 	 *
 	 * @param int $id
+	 *
+	 * @throws DeleteException
 	 */
 	public function delete($id);
 }

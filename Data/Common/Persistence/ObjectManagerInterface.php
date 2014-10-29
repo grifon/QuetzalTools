@@ -2,9 +2,9 @@
 
 namespace Quetzal\Data\Common\Persistence;
 
-use Quetzal\Common\Exception\Data\Common\DeleteException;
-use Quetzal\Common\Exception\Data\Common\SaveException;
 use Quetzal\Data\Common\Model;
+use Quetzal\Exception\Data\Common\DeleteException;
+use Quetzal\Exception\Data\Common\SaveException;
 
 /**
  * Интерфейс менеджера объектов хранилища

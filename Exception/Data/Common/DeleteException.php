@@ -1,19 +1,19 @@
 <?php
 
-namespace Quetzal\Common\Exception\Data\Common;
+namespace Quetzal\Exception\Data\Common;
 
 use Quetzal\Common\Exception;
 
 /**
- * Исключение процесса сохранения объекта
+ * Исключение процесса удаления объекта
  *
- * Class SaveException
+ * Class DeleteException
  *
  * @author Grigory Bychek <gbychek@gmail.com>
  *
- * @package Quetzal\Common\Exception\Data\Common
+ * @package Quetzal\Exception\Data\Common
  */
-class SaveException extends Exception
+class DeleteException extends Exception
 {
 	/**
 	 * @var int
@@ -26,7 +26,7 @@ class SaveException extends Exception
 	 * @param int $code
 	 * @param Exception $previous
 	 */
-	public function __construct($message, $id = null, $code = 0, Exception $previous = null)
+	public function __construct($message, $id, $code = 0, Exception $previous = null)
 	{
 		parent::__construct($message, $code, $previous);
 

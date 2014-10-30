@@ -10,6 +10,8 @@ use Quetzal\Tools\Data\Migration\Common\MigrationInterface;
  *
  * Class AbstractIBlockTypeMigration
  *
+ * @author Grigory Bychek <gbychek@gmail.com>
+ *
  * @package Quetzal\Tools\Data\Migration\Bitrix
  */
 abstract class AbstractIBlockTypeMigration implements MigrationInterface

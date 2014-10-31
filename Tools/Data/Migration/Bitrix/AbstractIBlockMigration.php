@@ -17,6 +17,11 @@ use Quetzal\Tools\Data\Migration\Common\MigrationInterface;
 abstract class AbstractIBlockMigration implements MigrationInterface
 {
 	/**
+	 * @var \CIBlockType
+	 */
+	protected $iBlockTypeGateway;
+
+	/**
 	 * @var \CIBlock
 	 */
 	protected $iBlockGateway;
@@ -28,7 +33,58 @@ abstract class AbstractIBlockMigration implements MigrationInterface
 
 	public function __construct()
 	{
+		$this->iBlockTypeGateway = new \CIBlockType();
 		$this->iBlockGateway = new \CIBlock();
+	}
+
+	/**
+	 * Создает тип инфоблока
+	 *
+	 * @param array $arFields
+	 *
+	 * @throws MigrationException
+	 */
+	protected function createIBlockType(array $arFields)
+	{
+		if (!$this->iBlockTypeGateway->Add($arFields)) {
+			throw new MigrationException($this->iBlockTypeGateway->LAST_ERROR);
+		}
+	}
+
+	/**
+	 * @param string $id
+	 * @param array $arFields
+	 *
+	 * @throws MigrationException
+	 */
+	protected function updateIBlockType($id, array $arFields)
+	{
+		if (!$this->iBlockTypeGateway->Update($id, $arFields)) {
+			throw new MigrationException($this->iBlockTypeGateway->LAST_ERROR);
+		}
+	}
+
+	/**
+	 * @param string $id
+	 *
+	 * @throws MigrationException
+	 */
+	protected function deleteIBlockType($id)
+	{
+		/** @global $APPLICATION \CMain */
+		/** @global $DB \CDatabase */
+		global $APPLICATION;
+		global $DB;
+
+		$DB->StartTransaction();
+
+		if(\CIBlockType::Delete($id)) {
+			$DB->Commit();
+		} else {
+			$DB->Rollback();
+
+			throw new MigrationException($APPLICATION->GetException());
+		}
 	}
 
 	/**

@@ -108,8 +108,8 @@ class EnvironmentManager implements SingletonInterface
 	public function get($key)
 	{
 		foreach ($this->configurations as $config) {
-			if (isset($config[$key])) {
-				return $config[$key];
+			if ($config->get($key)) {
+				return $config->get($key);
 			}
 		}
 

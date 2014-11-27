@@ -85,7 +85,7 @@ abstract class AbstractIBlockPropertyMigration implements MigrationInterface
 	 *
 	 * @throws MigrationException
 	 */
-	protected function deleteIBlock($id)
+	protected function deleteProperty($id)
 	{
 		/** @global $APPLICATION \CMain */
 		/** @global $DB \CDatabase */

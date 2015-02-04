@@ -98,12 +98,13 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 *
 	 * @param array $orderBy
 	 * @param bool $calculateCount
+	 * @param array $selectedFields
 	 *
 	 * @return array
 	 */
-	public function findAll(array $orderBy = array('sort' => 'asc'), $calculateCount = false)
+	public function findAll(array $orderBy = array('sort' => 'asc'), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
 	{
-		return $this->findBy(array(), $orderBy, $calculateCount, array());
+		return $this->findBy(array(), $orderBy, $calculateCount, $selectedFields);
 	}
 
 	/**

@@ -41,16 +41,17 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 * @param array $filter
 	 * @param array $orderBy
 	 * @param bool $calculateCount
+	 * @param array $selectedFields
 	 *
 	 * @return \CIBlockResult
 	 */
-	public function rawFindBy(array $filter = array(), array $orderBy = array('sort' => 'asc'), $calculateCount = false)
+	public function rawFindBy(array $filter = array(), array $orderBy = array('sort' => 'asc'), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
 	{
 		if (!isset($filter['IBLOCK_ID']) && $this->iBlockId) {
 			$filter['IBLOCK_ID'] = $this->iBlockId;
 		}
 
-		return $this->iBSGateway->GetList($orderBy, $filter, $calculateCount);
+		return $this->iBSGateway->GetList($orderBy, $filter, $calculateCount, $selectedFields);
 	}
 
 	/**
@@ -97,12 +98,13 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 *
 	 * @param array $orderBy
 	 * @param bool $calculateCount
+	 * @param array $selectedFields
 	 *
 	 * @return array
 	 */
-	public function findAll(array $orderBy = array('sort' => 'asc'), $calculateCount = false)
+	public function findAll(array $orderBy = array('sort' => 'asc'), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
 	{
-		return $this->findBy(array(), $orderBy, $calculateCount);
+		return $this->findBy(array(), $orderBy, $calculateCount, $selectedFields);
 	}
 
 	/**
@@ -111,14 +113,15 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 * @param array $filter
 	 * @param array $orderBy
 	 * @param bool $calculateCount
+	 * @param array $selectedFields Список выбираемых полей (в формате BX)
 	 *
 	 * @return array
 	 */
-	public function findBy(array $filter = array(), array $orderBy = array('sort' => 'asc'), $calculateCount = false)
+	public function findBy(array $filter = array(), array $orderBy = array('sort' => 'asc'), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
 	{
 		$sections = array();
 
-		$dbSections = $this->rawFindBy($filter, $orderBy, $calculateCount);
+		$dbSections = $this->rawFindBy($filter, $orderBy, $calculateCount, $selectedFields);
 
 		while ($arSection = $dbSections->GetNext()) {
 			$sections[] = $arSection;
@@ -132,12 +135,13 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 *
 	 * @param array $filter
 	 * @param bool $calculateCount
+	 * @param array $selectedFields
 	 *
 	 * @return array|null
 	 */
-	public function findOneBy(array $filter = array(), $calculateCount = false)
+	public function findOneBy(array $filter = array(), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
 	{
-		$sections = $this->findBy($filter, array(), $calculateCount);
+		$sections = $this->findBy($filter, array(), $calculateCount, $selectedFields);
 
 		return isset($sections[0]) ? $sections[0] : null;
 	}

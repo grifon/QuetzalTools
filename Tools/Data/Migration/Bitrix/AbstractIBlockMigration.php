@@ -106,13 +106,19 @@ abstract class AbstractIBlockMigration implements MigrationInterface
 	 * @param int $id
 	 * @param array $arFields
 	 *
+	 * @return bool
+	 *
 	 * @throws MigrationException
 	 */
 	protected function updateIBlock($id, array $arFields)
 	{
-		if (!$this->iBlockGateway->Update($id, $arFields)) {
-			throw new MigrationException($this->iBlockGateway->LAST_ERROR);
+		if ($this->iBlockGateway->Update($id, $arFields)) {
+			$this->iblockId = $id;
+
+			return true;
 		}
+
+		throw new MigrationException($this->iBlockGateway->LAST_ERROR);
 	}
 
 	/**

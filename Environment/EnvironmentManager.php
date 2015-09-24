@@ -61,6 +61,7 @@ class EnvironmentManager implements SingletonInterface
 
 		return array(
 			'common',
+			'common_override',
 			$currentSiteId,
 			sprintf('%s_override', $currentSiteId)
 		);

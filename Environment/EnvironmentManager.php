@@ -3,6 +3,7 @@
 namespace Quetzal\Environment;
 
 use Quetzal\Common\SingletonInterface;
+use Quetzal\Environment\Configuration\CommonConfiguration;
 use Quetzal\Environment\Configuration\ConfigurationInterface;
 
 /**
@@ -27,7 +28,7 @@ class EnvironmentManager implements SingletonInterface
 	protected static $instance = null;
 
 	/**
-	 * @var array
+	 * @var CommonConfiguration[]
 	 */
 	protected $configurations = array();
 

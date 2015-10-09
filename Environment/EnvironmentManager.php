@@ -15,7 +15,7 @@ use Quetzal\Environment\Configuration\ConfigurationInterface;
  *
  * @package Quetzal\Environment
  */
-class EnvironmentManager implements SingletonInterface
+final class EnvironmentManager implements SingletonInterface
 {
 	/**
 	 * id сайта по умолчанию

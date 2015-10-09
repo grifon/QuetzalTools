@@ -13,4 +13,8 @@ namespace Quetzal\Data\Common;
  */
 abstract class Model
 {
+	/**
+	 * @return mixed
+	 */
+	abstract public function getId();
 }

@@ -14,6 +14,8 @@ use Quetzal\Exception\Data\Common\SaveException;
  *
  * Class IBlockElementManager
  *
+ * @author Grigory Bychek <gbychek@gmail.com>
+ *
  * @package Quetzal\Data\Bitrix
  */
 final class IBlockElementManager implements ObjectManagerInterface, SingletonInterface

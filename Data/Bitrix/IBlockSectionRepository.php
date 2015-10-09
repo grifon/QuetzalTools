@@ -45,8 +45,12 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 *
 	 * @return \CIBlockResult
 	 */
-	public function rawFindBy(array $filter = array(), array $orderBy = array('sort' => 'asc'), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
-	{
+	public function rawFindBy(
+		array $filter = array(),
+		array $orderBy = array('sort' => 'asc'),
+		$calculateCount = false,
+		array $selectedFields = array('*', 'UF_*')
+	) {
 		if (!isset($filter['IBLOCK_ID']) && $this->iBlockId) {
 			$filter['IBLOCK_ID'] = $this->iBlockId;
 		}
@@ -102,8 +106,11 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 *
 	 * @return array
 	 */
-	public function findAll(array $orderBy = array('sort' => 'asc'), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
-	{
+	public function findAll(
+		array $orderBy = array('sort' => 'asc'),
+		$calculateCount = false,
+		array $selectedFields = array('*', 'UF_*')
+	) {
 		return $this->findBy(array(), $orderBy, $calculateCount, $selectedFields);
 	}
 
@@ -117,8 +124,12 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 *
 	 * @return array
 	 */
-	public function findBy(array $filter = array(), array $orderBy = array('sort' => 'asc'), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
-	{
+	public function findBy(
+		array $filter = array(),
+		array $orderBy = array('sort' => 'asc'),
+		$calculateCount = false,
+		array $selectedFields = array('*', 'UF_*')
+	) {
 		$sections = array();
 
 		$dbSections = $this->rawFindBy($filter, $orderBy, $calculateCount, $selectedFields);
@@ -139,8 +150,11 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	 *
 	 * @return array|null
 	 */
-	public function findOneBy(array $filter = array(), $calculateCount = false, array $selectedFields = array('*', 'UF_*'))
-	{
+	public function findOneBy(
+		array $filter = array(),
+		$calculateCount = false,
+		array $selectedFields = array('*', 'UF_*')
+	) {
 		$sections = $this->findBy($filter, array(), $calculateCount, $selectedFields);
 
 		return isset($sections[0]) ? $sections[0] : null;
@@ -184,7 +198,7 @@ class IBlockSectionRepository implements ObjectRepositoryInterface
 	{
 		return $this->findBy(
 			array(
-				'ACTIVE'        => 'Y',
+				'ACTIVE' => 'Y',
 				'IBLOCK_ACTIVE' => 'Y',
 				'GLOBAL_ACTIVE' => 'Y',
 			),

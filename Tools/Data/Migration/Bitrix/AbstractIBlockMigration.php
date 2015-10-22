@@ -155,7 +155,7 @@ abstract class AbstractIBlockMigration implements MigrationInterface
 	/**
 	 * Method checks the condition of the existence of the information block
 	 *
-	 * @param $code
+	 * @param string $code
 	 * @return bool
 	 */
 	protected function isIBlockExists($code)

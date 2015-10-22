@@ -231,12 +231,12 @@ abstract class AbstractIBlockPropertyMigration implements MigrationInterface
 	/**
 	 * Method checks the condition of the existence of property
 	 *
-	 * @param $code
+	 * @param string $code
 	 * @return bool
 	 */
 	protected function isIBlockPropertyExists($code)
 	{
-		$arResult = $this->iBlockPropertyGateway->GetList(array(), array('IBLOCK_ID' => $this->iBlockId, 'CODE' => $code))->GetNext();
+		$arResult = $this->iBlockPropertyGateway->GetList(array(), array('IBLOCK_ID' => $this->iBlockId, 'CODE' => $code))->Fetch();
 
 		return !!$arResult;
 	}

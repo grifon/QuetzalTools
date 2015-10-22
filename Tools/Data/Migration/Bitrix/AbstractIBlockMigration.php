@@ -96,6 +96,14 @@ abstract class AbstractIBlockMigration implements MigrationInterface
 	 */
 	protected function createIBlock(array $arFields)
 	{
+		if (empty($arFields['CODE'])) {
+			throw new MigrationException('Unknown code information block');
+		}
+
+		if ($this->isIBlockExists($arFields['CODE'])) {
+			throw new MigrationException(sprintf('IBlock with code "%s" already exists', $arFields['CODE']));
+		}
+
 		if (!$id = $this->iBlockGateway->Add($arFields)) {
 			throw new MigrationException($this->iBlockGateway->LAST_ERROR);
 		}
@@ -142,5 +150,18 @@ abstract class AbstractIBlockMigration implements MigrationInterface
 
 			throw new MigrationException($APPLICATION->GetException());
 		}
+	}
+
+	/**
+	 * Method checks the condition of the existence of the information block
+	 *
+	 * @param $code
+	 * @return bool
+	 */
+	protected function isIBlockExists($code)
+	{
+		$arResult = $this->iBlockGateway->GetList(array(), array('CODE' => $code))->Fetch();
+
+		return !!$arResult;
 	}
 }

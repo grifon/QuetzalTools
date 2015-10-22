@@ -62,6 +62,10 @@ abstract class AbstractIBlockPropertyMigration implements MigrationInterface
 		$arFields['IBLOCK_ID'] = $this->iBlockId;
 		$arFields['VERSION'] = $this->storageType;
 
+		if (!empty($code) && $this->isIBlockPropertyExists($code)) {
+			throw new MigrationException(sprintf('IBlock property with code "%s" already exists', $code));
+		}
+
 		if (!$this->iBlockPropertyGateway->Add($arFields)) {
 			throw new MigrationException($this->iBlockPropertyGateway->LAST_ERROR);
 		}
@@ -222,5 +226,18 @@ abstract class AbstractIBlockPropertyMigration implements MigrationInterface
 			'DEF'   => $isDefault ? 'Y' : 'N',
 			'SORT'  => $sort,
 		);
+	}
+
+	/**
+	 * Method checks the condition of the existence of property
+	 *
+	 * @param string $code
+	 * @return bool
+	 */
+	protected function isIBlockPropertyExists($code)
+	{
+		$arResult = $this->iBlockPropertyGateway->GetList(array(), array('IBLOCK_ID' => $this->iBlockId, 'CODE' => $code))->Fetch();
+
+		return !!$arResult;
 	}
 }

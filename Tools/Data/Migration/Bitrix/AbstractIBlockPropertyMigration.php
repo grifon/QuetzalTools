@@ -198,12 +198,13 @@ abstract class AbstractIBlockPropertyMigration implements MigrationInterface
 	 * @param string $code
 	 * @param array $arFields
 	 * @param int $iBlockId
+	 * @param string $typeLink
 	 *
 	 * @throws MigrationException
 	 */
-	protected function createLinkProperty($name, $code, array $arFields = array(), $iBlockId = null)
+	protected function createLinkProperty($name, $code, array $arFields = array(), $iBlockId = null, $typeLink = 'E')
 	{
-		$arFields['PROPERTY_TYPE'] = 'E';
+		$arFields['PROPERTY_TYPE'] = $typeLink;
 
 		if ($iBlockId) {
 			$arFields['LINK_IBLOCK_ID'] = $iBlockId;

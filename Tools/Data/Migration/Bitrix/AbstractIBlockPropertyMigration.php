@@ -22,6 +22,9 @@ abstract class AbstractIBlockPropertyMigration implements MigrationInterface
 	const LIST_TYPE_SELECT = 'L';
 	const LIST_TYPE_CHECKBOX = 'C';
 
+	const LINK_TYPE_ELEMENT = 'E';
+	const LINK_TYPE_SECTION = 'G';
+
 	/**
 	 * @var \CIBlockProperty
 	 */
@@ -202,7 +205,7 @@ abstract class AbstractIBlockPropertyMigration implements MigrationInterface
 	 *
 	 * @throws MigrationException
 	 */
-	protected function createLinkProperty($name, $code, array $arFields = array(), $iBlockId = null, $typeLink = 'E')
+	protected function createLinkProperty($name, $code, array $arFields = array(), $iBlockId = null, $typeLink = self::LINK_TYPE_ELEMENT)
 	{
 		$arFields['PROPERTY_TYPE'] = $typeLink;
 

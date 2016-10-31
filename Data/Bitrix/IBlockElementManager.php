@@ -215,4 +215,14 @@ final class IBlockElementManager implements ObjectManagerInterface, SingletonInt
 			$internalException ? $internalException->GetID() : 0
 		);
 	}
+
+	/**
+	 * Вернет текст ошибки, возникшей при добавлении/обновлении элемента
+	 *
+	 * @return string
+	 */
+	public function getLastError()
+	{
+		return $this->iBEGateway->LAST_ERROR;
+	}
 }

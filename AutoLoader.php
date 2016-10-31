@@ -74,7 +74,7 @@ class AutoLoader
 						break;
 					}
 
-					self::recursiveLoad($file, $path2, self::$recursiveSearch);
+					self::recursiveLoad($file, $path2);
 				}
 			}
 

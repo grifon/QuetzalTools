@@ -14,20 +14,71 @@ use Quetzal\Tools\CDN\PathGenerator;
 class PathGeneratorTest extends \PHPUnit_Framework_TestCase
 {
 	/**
-	 * Тест генерации путей
+	 * Провайдер для метода testGenerateCDNUri
+	 *
+	 * @return array
 	 */
-	public function testGenerateCDNUri()
+	public function generateCDNUriProvider()
 	{
-		$generator = new PathGenerator(
+		return array(
 			array(
-				'img1.site.ru',
-				'img2.site.ru'
-			)
+				array(
+					'img1.site.ru',
+					'img2.site.ru',
+				),
+				'/upload/iblock/000/image.jpg',
+				array(
+					'//img1.site.ru/upload/iblock/000/image.jpg',
+				)
+			),
+			array(
+				array(
+					'img1.site.ru',
+				),
+				'/upload/iblock/000/image.jpg',
+				array(
+					'//img1.site.ru/upload/iblock/000/image.jpg',
+				)
+			),
+			array(
+				array(
+					'cdn.ru',
+					'img2.site.ru',
+				),
+				'/upload/iblock/000/image.jpg',
+				array(
+					'//cdn.ru/upload/iblock/000/image.jpg',
+				)
+			),
+			array(
+				array(
+					'img1.site.ru',
+					'img2.site.ru',
+				),
+				'/upload/iblock/000/image.jpg',
+				array(
+					'//img1.site.ru/upload/iblock/000/image.jpg',
+					'//img2.site.ru/upload/iblock/000/image.jpg',
+				)
+			),
 		);
+	}
 
-		$this->assertEquals(
-			'//img1.site.ru/upload/iblock/000/image.jpg',
-			$generator->generateCDNUri('/upload/iblock/000/image.jpg')
-		);
+	/**
+	 * Тест генерации путей
+	 *
+	 * @dataProvider generateCDNUriProvider
+	 *
+	 * @param array $domains
+	 * @param string $uri
+	 * @param array $results
+	 */
+	public function testGenerateCDNUri(array $domains, $uri, array $results)
+	{
+		$generator = new PathGenerator($domains);
+
+		foreach ($results as $result) {
+			$this->assertEquals($result, $generator->generateCDNUri($uri));
+		}
 	}
 }

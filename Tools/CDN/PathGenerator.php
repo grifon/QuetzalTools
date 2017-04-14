@@ -44,7 +44,7 @@ class PathGenerator
 	/**
 	 * Строит uri из CDN по простому uri
 	 *
-	 * @param string $uri
+	 * @param string $uri Адрес относительно корня сайта
 	 *
 	 * @return string
 	 */

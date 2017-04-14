@@ -42,6 +42,30 @@ class PathGenerator
 	}
 
 	/**
+	 * Устанавливает список доменов
+	 *
+	 * @param array $domains
+	 */
+	public function setDomains(array $domains)
+	{
+		if (empty($domains)) {
+			throw new \InvalidArgumentException('Domains list should be not empty');
+		}
+
+		$this->domains = $domains;
+	}
+
+	/**
+	 * Добавляет домен в список
+	 *
+	 * @param array $domain
+	 */
+	public function addDomain(array $domain)
+	{
+		$this->domains[] = $domain;
+	}
+
+	/**
 	 * Строит uri из CDN по простому uri
 	 *
 	 * @param string $uri Адрес относительно корня сайта

@@ -27,10 +27,15 @@ abstract class AbstractEventMessageMigration implements MigrationInterface
 	protected $eventMessageId;
 
 	/**
-	 * @var
+	 * @var bool
 	 */
 	protected $duplicate;
 
+	/**
+	 * Конструктор класса AbstractEventMessageMigration
+	 *
+	 * @param bool $duplicate
+	 */
 	public function __construct($duplicate = false)
 	{
 		$this->eventMessageGateway = new \CEventMessage();
@@ -40,7 +45,7 @@ abstract class AbstractEventMessageMigration implements MigrationInterface
 	/**
 	 * Создает почтовый шаблон
 	 *
-	 * @param string $eventType
+	 * @param string $eventName
 	 * @param string $subject
 	 * @param string $message
 	 * @param array $arFields
@@ -74,9 +79,10 @@ abstract class AbstractEventMessageMigration implements MigrationInterface
 	/**
 	 * Обновляет почтовый шаблон
 	 *
-	 * @param string $id
+	 * @param int $id
 	 * @param array $arFields
 	 *
+	 * @return bool
 	 * @throws \Quetzal\Exception\Data\Migration\MigrationException
 	 */
 	protected function updateEventMessage($id, array $arFields)
@@ -93,7 +99,7 @@ abstract class AbstractEventMessageMigration implements MigrationInterface
 	/**
 	 * Удаляет почтовый шаблон по ID
 	 *
-	 * @param string $eventName
+	 * @param string $eventMessageId
 	 *
 	 * @throws \Quetzal\Exception\Data\Migration\MigrationException
 	 */
@@ -118,7 +124,7 @@ abstract class AbstractEventMessageMigration implements MigrationInterface
 	/**
 	 * Создает почтовый шаблон текстового типа
 	 *
-	 * @param $eventType
+	 * @param $eventName
 	 * @param $subject
 	 * @param string $message
 	 * @param array $arFields
@@ -130,6 +136,14 @@ abstract class AbstractEventMessageMigration implements MigrationInterface
 		$this->createEventMessage($eventName, $subject, $message, $arFields);
 	}
 
+	/**
+	 * Создает почтовый шаблон типа html
+	 *
+	 * @param $eventName
+	 * @param $subject
+	 * @param string $message
+	 * @param array $arFields
+	 */
 	protected function createHtmlEventMessage($eventName, $subject, $message = '', array $arFields = array())
 	{
 		$arFields['BODY_TYPE'] = 'html';

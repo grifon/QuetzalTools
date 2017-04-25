@@ -26,6 +26,9 @@ abstract class AbstractEventTypeMigration implements MigrationInterface
 	 */
 	protected $eventTypeId;
 
+	/**
+	 * Конструктор класса AbstractEventTypeMigration
+	 */
 	public function __construct()
 	{
 		$this->eventTypeGateway = new \CEventType();

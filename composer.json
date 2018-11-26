@@ -1,0 +1,18 @@
+{
+  "name": "grifon/QuetzalTools",
+  "type": "library",
+  "description": "QuetzalTools",
+  "keywords": ["bitrix", "QuetzalTools"],
+  "version": "0.0.1",
+  "authors": [{
+    "name": "Grigory Bychek",
+    "email": "gbychek@gmail.com",
+    "homepage": "http://studioratio.ru",
+    "role": "Lead Bitrix Developer"
+  }],
+  "autoload": {
+    "psr-4": {
+      "Quetzal\\": "/"
+    }
+  }
+}
